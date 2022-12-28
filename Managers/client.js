@@ -118,7 +118,7 @@ class Client {
         if (!this.config.authorizationkey) throw new Error('Pls provide your choosen Authorization Key for verifying Requests.');
         if (this.config.postinterval && isNaN(this.config.postinterval)) throw new Error('The PostInterval is not a valid Time. Provide the Interval in milliseconds');
         if (!this.config.postinterval) this.config.postinterval = 5000;
-        if (!this.config.stats_uri || typeof this.config.stats_uri !== "string") throw new Error("Pls provide your base stats_uri, e.g: http://localhost:3333, or http:192.168.0.1:3333");
+        if (!this.config.stats_uri || typeof this.config.stats_uri !== "string" || this.config.stats_uri.include('http://localhost')) throw new Error("Pls provide your base stats_uri, make sure to use ip  if you are using localhost  e.g:  http//example.com or http:192.168.0.1:3333");
         if(!this.config.stats_uri?.endsWith?.("/")) this.config.stats_uri += "/";
     }
 }
